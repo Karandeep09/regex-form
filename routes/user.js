@@ -23,7 +23,7 @@ var sub = function(post,sql) {
     });
 
 router.post('/check',urlencodedParser,(req,res) => {
-      post = req.body.un; 
+      post = req.body.usern; 
       sql= "SELECT * from user WHERE username = ?";
       db.query(sql, post, (err, result) => {
         if(err) throw err;
@@ -32,7 +32,7 @@ router.post('/check',urlencodedParser,(req,res) => {
         res.send( "Username is unavailable");
         else 
         res.send("Username is available");
-    });
+    }); 
 });
 
 router.post('/clicked',urlencodedParser,(req,res) => {

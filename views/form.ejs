@@ -27,7 +27,7 @@
 </head>
 
 <body>  
-  <form id= "formadd" method = "post" action = '/user/check' > 
+  <form id= "formadd" method = "post" onsubmit="return check();"> 
     <fieldset>
     <div class="control-group">
       <!-- Username -->
@@ -41,7 +41,24 @@
   </div>
 </fieldset>
 </form>  
-  
+  <script>
+    function check() {
+                            var data = {};
+                            data.usern = document.getElementById("un").value;
+                            $.ajax({
+                                url: "/user/check",
+                                method: "POST",
+                                data: JSON.stringify(data),
+                                contentType: 'application/json',
+                                success: function(response) {
+                                    alert(response);
+                                } 
+                    
+                            });
+                            document.getElementById("formadd").reset();
+                            return false;
+                        }
+  </script>
     <form id = "dataform" method = "post" onsubmit="return foo()" class="form-horizontal" action="/user/clicked"  > <!-- enctype="multipart/form-data" -->
   <fieldset>
     <div id="legend">
