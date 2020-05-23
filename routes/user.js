@@ -40,7 +40,8 @@ router.post('/clicked',urlencodedParser,(req,res) => {
              name : req.body.name,
              email : req.body.email,
              username : req.body.username,
-             password : req.body.password
+             password : req.body.password,
+             aboutme : req.body.About
        };
        sql = "INSERT INTO user SET ?"; 
        sub(data,sql);

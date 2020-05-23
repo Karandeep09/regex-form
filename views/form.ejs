@@ -15,8 +15,11 @@
     var f = document.getElementById("upp").style.color;
     var g = document.getElementById("len").style.color;
     var h = document.getElementById("message").style.color;
-    if(a=='green' && b=='green' && c=='green' && d=='green' && e=='green' && f=='green' && g=='green' && h=='green') 
-    return true;
+    var i = document.getElementById("mabout").style.color;
+    
+    if(a=='green' && b=='green' && c=='green' && d=='green' && e=='green' && f=='green' && g=='green' && h=='green' && i=='green') 
+    return true; 
+    alert("Enter correct information");
     return false;
     }   
  </script>
@@ -97,7 +100,14 @@
       </div>
     </div>
    
-    
+    <div class="control-group">
+      <!-- About -->
+        <label class="control-label"  for="about">About Me</label>
+        <div class="controls"></div>
+          <textarea id="about" name="About" placeholder="" class="input-xlarge"></textarea>
+          <span id="mabout"></span>
+        </div>
+      </div>
 
 
     <div class="control-group">
@@ -169,7 +179,25 @@
           $('#len').css('color','red');
           else 
           $('#len').css('color','green');
-        }); 
+        });  
+
+        $('#about').on('keyup',function(){
+      if($('#about').val().length>100 )
+        $('#mabout').html("Name must be atmost 100 characters long").css('color','red');
+       else $('#mabout').html("&#10004;").css('color','green'); 
+      }); 
+
+      $(document).ready(function() {
+  $(window).keydown(function(event){
+      if(event.target.tagName != 'TEXTAREA') {
+        if(event.keyCode == 13) {
+          event.preventDefault();
+          return false;
+        }
+      }
+  });
+});
+
       </script>   
    
 </body> 
