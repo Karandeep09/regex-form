@@ -27,7 +27,7 @@
     }   
     function check() {
                             var data = {};
-                            data.usern = document.getElementById("un").value;
+                            data.usern = document.getElementById("username").value;
                             $.ajax({
                                 url: "/user/check",
                                 method: "POST",
@@ -86,7 +86,7 @@
      
       <label class="control-label"  for="un">Username</label>
       <div class="controls">
-        <input type="text" id="un" name="un" placeholder="" class="input-xlarge">
+        <input type="text" id="username" name="username" placeholder="" class="input-xlarge">
         <button onclick = "check();">Check</button>
         <p class="help-block">Check username if it is available</p>
       </div>
