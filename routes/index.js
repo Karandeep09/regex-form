@@ -29,7 +29,23 @@ router.post('/uploaded', (req,res) => {
    form.on('file', function (name, file){
        console.log('Uploaded ' + file.name); 
        fl=file.name;
-   });
+     
+       db.query('SELECT * FROM user WHERE username = ?',''+user+'', (err, result) => {
+        if(err) throw err;
+        console.log(result); 
+        result[0].imagepath='/images/'+file.name;
+        
+        db.query('DELETE FROM user WHERE id = ?',result[0].id,(erro,resu) => {
+            if(erro) throw erro;    
+         }); 
+
+        db.query('INSERT INTO user SET ?',result[0],(erro,resu) => {
+             if(erro) throw erro;
+             console.log(resu);    
+          }); 
+    });
+        
+    });
    
    /*db.query("UPDATE user SET imagepath = '"+fl+"' WHERE username = ?",user, (err, result) => {
      if(err) throw err;
