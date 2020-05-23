@@ -5,7 +5,8 @@
 <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>   
- <script>
+ <script> 
+  var j=false;
     function foo()
     { var a = document.getElementById("mname").style.color;
     var b = document.getElementById("memail").style.color;
@@ -16,32 +17,14 @@
     var g = document.getElementById("len").style.color;
     var h = document.getElementById("message").style.color;
     var i = document.getElementById("mabout").style.color;
-    
+    if(j==true)
     if(a=='green' && b=='green' && c=='green' && d=='green' && e=='green' && f=='green' && g=='green' && h=='green' && i=='green') 
     return true; 
+    if(j==false);
+    else
     alert("Enter correct information");
     return false;
     }   
- </script>
-
-</head>
-
-<body>  
-  <form id= "formadd" method = "post" onsubmit="return check();"> 
-    <fieldset>
-    <div class="control-group">
-      <!-- Username -->
-   
-    <label class="control-label"  for="un">Username</label>
-    <div class="controls">
-      <input type="text" id="un" name="un" placeholder="" class="input-xlarge">
-      <button>Check</button>
-      <p class="help-block">Check username if it is available</p>
-    </div>
-  </div>
-</fieldset>
-</form>  
-  <script>
     function check() {
                             var data = {};
                             data.usern = document.getElementById("un").value;
@@ -51,13 +34,28 @@
                                 data: JSON.stringify(data),
                                 contentType: 'application/json',
                                 success: function(response) {
-                                    alert(response);
+                                    alert(response); 
+                                    if(response=="Username is available") 
+                                    j=true;
+                                    else j=false;
                                 } 
                     
                             });
                             document.getElementById("formadd").reset();
                             return false;
                         }
+ </script>
+
+</head>
+
+<body>  
+  <form id= "formadd" method = "post" onsubmit="return check();"> 
+    <fieldset>
+    
+</fieldset>
+</form>  
+  <script>
+    
   </script>
     <form id = "dataform" method = "post" onsubmit="return foo()" class="form-horizontal" action="/user/clicked"  > <!-- enctype="multipart/form-data" -->
   <fieldset>
@@ -86,10 +84,11 @@
       <div class="control-group">
         <!-- Username -->
      
-      <label class="control-label"  for="username">Username</label>
+      <label class="control-label"  for="un">Username</label>
       <div class="controls">
-        <input type="text" id="username" name="username" placeholder="" class="input-xlarge">
-        <p class="help-block">Username can contain any letters or numbers, without spaces</p>
+        <input type="text" id="un" name="un" placeholder="" class="input-xlarge">
+        <button onclick = "check();">Check</button>
+        <p class="help-block">Check username if it is available</p>
       </div>
     </div>
   
